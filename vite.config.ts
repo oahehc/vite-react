@@ -1,20 +1,21 @@
-import { defineConfig } from "vite";
+import { defineConfig, Plugin } from "vite";
 import reactRefresh from "@vitejs/plugin-react-refresh";
 
 export default ({ command, mode }) => {
-  if (command === "dev") {
-    return defineConfig({
-      plugins: [reactRefresh()],
-      esbuild: {
-        jsxInject: `import React from 'react'`,
-      },
-    });
-  } else {
-    return defineConfig({
-      plugins: [reactRefresh()],
-      esbuild: {
-        jsxInject: `import React from 'react'`,
-      },
-    });
-  }
+  return defineConfig({
+    plugins: [reactRefresh(), myPlugin({ command, mode })],
+    esbuild: {
+      jsxInject: `import React from 'react'`,
+    },
+  });
 };
+
+function myPlugin(...args): Plugin {
+  return {
+    name: "build-only-log",
+    apply: "build",
+    configResolved() {
+      console.log("configResolved:", args);
+    },
+  };
+}
