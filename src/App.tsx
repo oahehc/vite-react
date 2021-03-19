@@ -1,8 +1,9 @@
+import { useState } from "react";
 import logo from "./asset/logo.svg";
 import style from "./style/App.module.css";
 
 function App() {
-  const [count, setCount] = React.useState(0);
+  const [count, setCount] = useState(0);
 
   return (
     <div className={style.App}>
