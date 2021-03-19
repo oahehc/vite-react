@@ -1,4 +1,5 @@
 import { useState } from "react";
+import ShowEnv from "./ShowEnv";
 import logo from "./asset/logo.svg";
 import style from "./style/App.module.css";
 
@@ -37,6 +38,7 @@ function App() {
             Vite Docs
           </a>
         </p>
+        <ShowEnv />
       </header>
     </div>
   );
